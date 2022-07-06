@@ -84,7 +84,7 @@ def teacherview(request):
         offset = 0
         page = 1
     teachers=Teacher.objects.raw('select * from teacher limit 8 offset %s', [offset])
-    pageItem = len(teachers)%int
+    pageItem = int(len(teachers))
     return render(request,"admin/teacherview.html", {'teachers':teachers,'page': page, 'pageItem': pageItem})
 def studentview(request):
     if (request.method == "POST"):
