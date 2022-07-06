@@ -1,4 +1,4 @@
-from decimal import Decimal, DecimalException
+from decimal import Decimal, DecimalException, DecimalTuple
 import imp
 import string
 from django.shortcuts import render, redirect
@@ -84,7 +84,7 @@ def teacherview(request):
         offset = 0
         page = 1
     teachers=Teacher.objects.raw('select * from teacher limit 8 offset %s', [offset])
-    pageItem = len(teachers)%DecimalException
+    pageItem = len(teachers)%DecimalTuple
     return render(request,"admin/teacherview.html", {'teachers':teachers,'page': page, 'pageItem': pageItem})
 def studentview(request):
     if (request.method == "POST"):
