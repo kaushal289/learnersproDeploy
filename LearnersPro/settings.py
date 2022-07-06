@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 
 from pathlib import Path
 import os
+import django_heroku
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -27,7 +28,7 @@ SECRET_KEY = 'django-insecure-s=duhqhf)z(6$j_o4_7su2yhm@$1m^d9#x5tte(s1gd7=w=cs=
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['learnerspro.herokuapp.com']
 
 
 # Application definition
@@ -53,6 +54,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'LearnersPro.urls'
@@ -79,17 +81,29 @@ WSGI_APPLICATION = 'LearnersPro.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'learnerspro',
+#         'HOST': '127.0.0.1' ,
+#         'PORT':'3307',
+#         'USER':'root',
+#         'PASSWORD':'',
+#     }
+# }
+
+
+# For online database in heroku
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'learnerspro',
-        'HOST': '127.0.0.1' ,
-        'PORT':'3307',
-        'USER':'root',
-        'PASSWORD':'',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'd6lk8189i88a4a',
+        'USER': 'hrppommrqmzjlb',
+        'PASSWORD': '06f9ec8e44b0345be10c0f186123edeb1db996d78cab57e500bfc9eb6f33bc9c',
+        'HOST': 'ec2-44-198-82-71.compute-1.amazonaws.com',
+        'PORT': '5432',
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
@@ -125,11 +139,30 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
-STATIC_URL = '/static/'
-STATICFILES_DIRS =[os.path.join(BASE_DIR,'static')]
+# STATIC_URL = '/static/'
+# STATICFILES_DIRS =[os.path.join(BASE_DIR,'static')]
 
-MEDIA_URL="/assets/"
-MEDIA_ROOT=os.path.join(BASE_DIR,'static/assets')
+# MEDIA_URL="/assets/"
+# MEDIA_ROOT=os.path.join(BASE_DIR,'static/assets')
+
+
+#For Deployment Purpose only
+STATIC_URL = 'static/'
+
+
+django_heroku.settings(locals())
+
+# Extra places for collectstatic to find static files.
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'static'),
+)
+STATICFILES_STORAGE =  'django.contrib.staticfiles.storage.StaticFilesStorage'
+# STATICFILES_STORAGE =  'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+#file upload url and root
+MEDIA_ROOT = os.path.join(BASE_DIR,'media')
+MEDIA_URL = "/media/"
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
