@@ -1,3 +1,4 @@
+from decimal import Decimal
 import imp
 from django.shortcuts import render, redirect
 from alladmin.forms import AdminForm
@@ -82,7 +83,7 @@ def teacherview(request):
         offset = 0
         page = 1
     teachers=Teacher.objects.raw('select * from teacher limit 8 offset % s', [offset])
-    pageItem = len(teachers)
+    pageItem = len(teachers)%Decimal
     return render(request,"admin/teacherview.html", {'teachers':teachers,'page': page, 'pageItem': pageItem})
 def studentview(request):
     if (request.method == "POST"):
