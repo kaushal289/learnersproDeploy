@@ -47,7 +47,7 @@ def ticketview(request):
     else:
         offset = 0
         page = 1
-    tickets=Ticket.objects.raw('select * from ticket limit 8 offset % s', [offset])
+    tickets=Ticket.objects.raw('select * from ticket limit 8 offset %s', [offset])
     pageItem = int(len(tickets))
     return render(request,"admin/tickettable.html", {'tickets':tickets,'page': page, 'pageItem': pageItem})
 
