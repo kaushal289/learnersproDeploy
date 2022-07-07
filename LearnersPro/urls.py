@@ -15,10 +15,11 @@ Including another URLconf
 """
 from re import template
 from django.contrib import admin
-from django.urls import path,include
+from django.urls import path,include, re_path
 from django.contrib.auth import views as auth_views
 from django.conf.urls.static import static
 from django.conf import settings
+from waitress import serve
 
 
 urlpatterns = [
@@ -37,6 +38,7 @@ urlpatterns = [
     auth_views.PasswordResetConfirmView.as_view(template_name="teacher/resetpassword.html") , 
     name ="password_reset_confirm"),
     path('reset_password_complete/', 
-    auth_views.PasswordResetView.as_view(template_name="teacher/resetpassworddone.html") , 
-    name ="password_reset_complete")
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    auth_views.PasswordResetView.as_view(template_name="teacher/resetpassworddone.html"), 
+    name ="password_reset_complete"),
+    re_path(r'^media/(?P<path<.*)$',serve,{'document_root':settings.MEDIA_ROOT}),
+] 
