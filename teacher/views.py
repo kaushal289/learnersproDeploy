@@ -67,7 +67,7 @@ def allcourse(request):
         page = 1
     
     courses=Course.objects.raw('select * from course limit 8 offset % s', [offset])
-    pageItem = len(courses)
+    pageItem = int(len(courses))
     return render(request,"teacher/viewallcources.html",{'courses':courses, 'page': page, 'pageItem': pageItem})
 
 def editcourse(request,c_id):
@@ -121,7 +121,7 @@ def questionview(request):
         offset = 0
         page = 1
     questions=Question.objects.raw('select * from question limit 6 offset % s', [offset])
-    pageItem = len(questions)
+    pageItem = int(len(questions))
     return render(request,"teacher/questiontable.html", {'questions':questions,'page': page, 'pageItem': pageItem})
 
 def questiondelete(request,q_id):

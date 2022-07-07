@@ -48,7 +48,7 @@ def ticketview(request):
         offset = 0
         page = 1
     tickets=Ticket.objects.raw('select * from ticket limit 8 offset % s', [offset])
-    pageItem = len(tickets)
+    pageItem = int(len(tickets))
     return render(request,"admin/tickettable.html", {'tickets':tickets,'page': page, 'pageItem': pageItem})
 
 
@@ -100,7 +100,7 @@ def studentview(request):
         offset = 0
         page = 1
     students=Student.objects.raw('select * from student limit 8 offset % s', [offset])
-    pageItem = len(students)
+    pageItem = int(len(students))
     return render(request,"admin/viewstudent.html", {'students':students,'page': page, 'pageItem': pageItem})
 
 def teacherdelete(request,td_id):

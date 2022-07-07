@@ -25,16 +25,8 @@ from django.core.mail import EmailMessage
 from django.contrib.auth import logout as do_logout
 # Create your views here.
 def studentdashboard(request):
-    
-    # print (request.session.username)
-    # print(request.session.username)
-    # print(reque
-    # st.user.username)
-    print('hello')
     try:
         users=Student.objects.get(student_id=request.session['student_id'])
-        
-
         return render(request,"student/landingpage.html",{'users':[users]})
     except:
         return render(request,"student/landingpage.html")
