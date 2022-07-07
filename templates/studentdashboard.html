@@ -49,7 +49,7 @@
 
                                     {% for user in users %}
                                     {% if user.image|length > 0 %}
-                                    <img class="rounded-circle imgprof" src="{% static 'assets/' %}{{user.image}}" class="font-weight-bold">
+                                    <img class="rounded-circle imgprof" src="{{user.image.url}}" class="font-weight-bold">
                                     
                                     {% else %}
                                     <img class="rounded-circle imgprof" src="{% static 'img/profile.png' %}" class="font-weight-bold">
