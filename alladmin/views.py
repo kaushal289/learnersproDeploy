@@ -99,7 +99,7 @@ def studentview(request):
     else:
         offset = 0
         page = 1
-    students=Student.objects.raw('select * from student limit 8 offset % s', [offset])
+    students=Student.objects.raw('select * from student limit 8 offset %s', [offset])
     pageItem = int(len(students))
     return render(request,"admin/viewstudent.html", {'students':students,'page': page, 'pageItem': pageItem})
 
