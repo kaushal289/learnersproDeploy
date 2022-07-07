@@ -364,24 +364,14 @@ def send_forget_password_email(request, user):
     email.send()
 
 def enter_email(request):
-
     if request.method == 'POST':
-
         email = request.POST.get('email')
-
         if not Student.objects.filter(email=email):
-
             messages.success(request, 'User not registered')
-
         else:
-
             user = Student.objects.get(email=email)
-
             print (user.username)
-
             send_forget_password_email(request, user)
-
-
     return render(request, 'student/enteremail.html')
 
 def clicklink(request, uidb64, token):
