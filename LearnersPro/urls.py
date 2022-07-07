@@ -40,5 +40,4 @@ urlpatterns = [
     path('reset_password_complete/', 
     auth_views.PasswordResetView.as_view(template_name="teacher/resetpassworddone.html"), 
     name ="password_reset_complete"),
-    re_path(r'^media/(?P<path<.*)$',serve,{'document_root':settings.MEDIA_ROOT}),
-] 
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
