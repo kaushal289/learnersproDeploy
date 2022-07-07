@@ -7,7 +7,7 @@
             {% for account in accounts %}
             <div class="col-md-3 prouctitem">
                 <h6 class="desc"><b>{{account.topic}}</b></h6>
-                <button onclick="window.open(src='{% static 'assets/' %}{{account.content}}');">Open</button>
+                <button onclick="window.open(src='{{account.content.url}}');">Open</button>
             </div>
             {% endfor %}
         </div>

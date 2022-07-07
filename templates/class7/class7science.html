@@ -7,7 +7,7 @@
             {% for science in sciences %}
             <div class="col-md-3 prouctitem">
                 <h6 class="desc"><b>{{science.topic}}</b></h6>
-                <button onclick="window.open(src='{% static 'assets/' %}{{science.content}}');">Open</button>
+                <button onclick="window.open(src='{{science.content.url}}');">Open</button>
             </div>
             {% endfor %}
         </div>

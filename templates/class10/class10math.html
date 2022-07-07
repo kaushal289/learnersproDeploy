@@ -7,7 +7,7 @@
             {% for math in maths %}
             <div class="col-md-3 prouctitem">
                 <h6 class="desc"><b>{{math.topic}}</b></h6>
-                <button onclick="window.open(src='{% static 'assets/' %}{{math.content}}');">Open</button>
+                <button onclick="window.open(src='{{math.content.url}}');">Open</button>
             </div>
             {% endfor %}
         </div>

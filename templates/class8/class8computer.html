@@ -9,7 +9,7 @@
             {% for computer in computers %}
             <div class="col-md-3 prouctitem">
                 <h6 class="desc"><b>{{computer.topic}}</b></h6>
-                <button onclick="window.open(src='{% static 'assets/' %}{{computer.content}}');">Open</button>
+                <button onclick="window.open(src='{{computer.content.url}}');">Open</button>
             </div>
             {% endfor %}
         </div>

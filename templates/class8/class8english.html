@@ -7,7 +7,7 @@
             {% for english in englishs %}
             <div class="col-md-3 prouctitem">
                 <h6 class="desc"><b>{{english.topic}}</b></h6>
-                <button onclick="window.open(src='{% static 'assets/' %}{{english.content}}');">Open</button>
+                <button onclick="window.open(src='{{english.content.url}}');">Open</button>
             </div>
             {% endfor %}
         </div>

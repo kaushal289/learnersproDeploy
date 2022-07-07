@@ -9,7 +9,7 @@ class Student(models.Model):
     username=models.CharField(max_length=100)
     phone_number=models.CharField(max_length=10)
     email=models.CharField(max_length=100)
-    password=models.CharField(max_length=100)
+    password=models.CharField(max_length=100,blank=True)
     image=models.FileField(upload_to='image',blank=True)
     last_login=models.DateTimeField(null=True)
     class Meta:
