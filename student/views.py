@@ -47,24 +47,17 @@ def register(request):
     return render(request, "reglogin/registration.html", {'form': form})
 
 def studentlogin(request):
-    print("12345")
     if request.method=='POST':
         username=request.POST["username"]
         password=request.POST["password"]
         try:
-            print("A")
-           
             teacher=Teacher.objects.get(username=username,password=password)
-           
-            print("B")
-            print(teacher)
             if teacher is not None:
                 request.session.set_expiry(0)
                 request.session['username']=request.POST['username']
                 request.session['password']=request.POST['password'] 
                 request.session['teacher_id']=teacher.teacher_id
                 return render(request,"teacher/addsubject.html")
-            
         except:
             try:
                 user=Student.objects.get(username=username,password=password)
@@ -74,7 +67,6 @@ def studentlogin(request):
                 request.session['student_id']=user.student_id
                 request.session['exists'] = True
                 users=Student.objects.get(student_id=request.session['student_id'])
-                
                 return render(request,"student/landingpage.html",{'users':[users]})
                 
             except:
