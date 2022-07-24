@@ -91,11 +91,7 @@ def answer(request,a_id):
 def courseupdate(request,c_id):
     course=Course.objects.get(course_id=c_id)
     if request.method=="POST":
-        if int(len(request.FILES)) != 0:
-            if int(len(course.content))>0:
-                os.remove(course.content.path)
-            course.content=request.FILES['content']
-    
+        course.content=request.FILES['content']
     form=Courseform(request.POST, instance=course)
     form.save()
     return redirect ("/allcourse")
